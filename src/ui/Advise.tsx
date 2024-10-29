@@ -4,11 +4,11 @@ import { DataType } from "../Interfaces";
 
 const StyledAdvice = styled.div`
   width: 54rem;
-  height: 36.4rem;
+  min-height: 36.4rem;
 
   @media (max-width: 768px) {
     width: 34.3rem;
-    height: 34.7rem;
+    min-height: 34.7rem;
     padding: 2rem;
   }
 `;
@@ -20,14 +20,18 @@ const AdviceTextContainer = styled.div`
   justify-content: center;
   position: relative;
   background-color: #313a48;
-  height: 33.2rem;
+  min-height: 33.2rem;
   width: 100%;
   padding: 4rem;
   border-radius: 15px;
 
+  svg {
+    margin-bottom: 2rem;
+  }
+
   @media (max-width: 768px) {
     padding: 2rem;
-    height: 31.5rem;
+    min-height: 31.5rem;
   }
 `;
 
@@ -71,14 +75,15 @@ const AdviseButton = styled.button`
   position: absolute;
   background-color: transparent;
   border-radius: 50px;
-  width: 6.4rem;
-  height: 6.4rem;
+  min-width: 6.4rem;
+  min-height: 6.4rem;
   border: none;
   left: 50%;
   bottom: 0;
-  top: 90%;
+  top: 93%;
   transform: translateX(-50%);
   cursor: pointer;
+  z-index: 999;
 `;
 
 function Advise() {
