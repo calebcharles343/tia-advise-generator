@@ -120,7 +120,7 @@ function Advise() {
   }
 
   useEffect(() => {
-    // fetchData();
+    fetchData();
   }, []);
 
   if (error) return <p>Error: {error}</p>;
