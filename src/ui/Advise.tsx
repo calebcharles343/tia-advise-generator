@@ -14,21 +14,32 @@ const StyledAdvice = styled.div`
 `;
 
 const AdviceTextContainer = styled.div`
+  position: relative;
+
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: relative;
+  flex-direction: column;
   background-color: #313a48;
   min-height: 33.2rem;
   width: 100%;
-  padding: 4rem 4rem 8rem 4rem;
   border-radius: 15px;
+
+  svg {
+    width: 100%;
+    height: 1.6rem;
+  }
 
   @media (max-width: 768px) {
     padding: 2rem;
     min-height: 31.5rem;
   }
+`;
+
+const Text = styled.div`
+  width: 100%;
+  height: 100%;
+  margin-bottom: 4rem;
 `;
 
 const AdviseHeader = styled.h1`
@@ -69,17 +80,20 @@ const AdviseButton = styled.button`
   flex-direction: column;
   align-items: center;
   position: absolute;
+
   background-color: transparent;
   border-radius: 50px;
-  min-width: 6.4rem;
-  min-height: 6.4rem;
+  margin-bottom: ;
   border: none;
-  left: 50%;
-  bottom: 0;
   top: 90%;
-  transform: translateX(-50%);
+
   cursor: pointer;
   z-index: 999;
+
+  svg {
+    min-width: 6.4rem;
+    min-height: 6.4rem;
+  }
 `;
 
 function Advise() {
@@ -106,7 +120,7 @@ function Advise() {
   }
 
   useEffect(() => {
-    fetchData();
+    // fetchData();
   }, []);
 
   if (error) return <p>Error: {error}</p>;
@@ -114,23 +128,23 @@ function Advise() {
   return (
     <StyledAdvice>
       <AdviceTextContainer>
-        <AdviseHeader>
-          {loading ? `ADVICE#` : `ADVICE #${data?.id}`}
-        </AdviseHeader>
-        <Quote>{loading ? `loading` : `${data?.advice}`}</Quote>
+        <Text>
+          <AdviseHeader>
+            {loading ? `ADVICE#` : `ADVICE #${data?.id}`}
+          </AdviseHeader>
+          <Quote>{loading ? `loading` : `${data?.advice}`}</Quote>
 
-        <svg
-          width="auto"
-          height="16"
-          viewBox="0 0 444 16"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <rect y="8" width="196" height="1" fill="#4F5D74" />
-          <rect x="248" y="8" width="196" height="1" fill="#4F5D74" />
-          <rect x="212" width="6" height="16" rx="3" fill="#CEE3E9" />
-          <rect x="226" width="6" height="16" rx="3" fill="#CEE3E9" />
-        </svg>
+          <svg
+            viewBox="0 0 444 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect y="8" width="196" height="1" fill="#4F5D74" />
+            <rect x="248" y="8" width="196" height="1" fill="#4F5D74" />
+            <rect x="212" width="6" height="16" rx="3" fill="#CEE3E9" />
+            <rect x="226" width="6" height="16" rx="3" fill="#CEE3E9" />
+          </svg>
+        </Text>
 
         <AdviseButton onClick={fetchData}>
           <svg
