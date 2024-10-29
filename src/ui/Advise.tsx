@@ -9,13 +9,12 @@ const StyledAdvice = styled.div`
   @media (max-width: 768px) {
     width: 34.3rem;
     min-height: 34.7rem;
-    padding: 2rem;
+    padding: 2.4rem;
   }
 `;
 
 const AdviceTextContainer = styled.div`
   position: relative;
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,6 +23,7 @@ const AdviceTextContainer = styled.div`
   min-height: 33.2rem;
   width: 100%;
   border-radius: 15px;
+  padding: 4.8rem;
 
   svg {
     width: 100%;
