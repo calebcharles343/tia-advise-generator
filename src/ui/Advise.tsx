@@ -22,12 +22,8 @@ const AdviceTextContainer = styled.div`
   background-color: #313a48;
   min-height: 33.2rem;
   width: 100%;
-  padding: 4rem;
+  padding: 4rem 4rem 8rem 4rem;
   border-radius: 15px;
-
-  svg {
-    margin-bottom: 2rem;
-  }
 
   @media (max-width: 768px) {
     padding: 2rem;
@@ -80,7 +76,7 @@ const AdviseButton = styled.button`
   border: none;
   left: 50%;
   bottom: 0;
-  top: 93%;
+  top: 90%;
   transform: translateX(-50%);
   cursor: pointer;
   z-index: 999;
