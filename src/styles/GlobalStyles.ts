@@ -85,6 +85,7 @@ body {
   font-weight: 400;
   color: #fff;
   background-color: #202733;
+  height: 100vh;
 
   /* Only works if ther is nothing 
   absolutely positioned in relations to body  */

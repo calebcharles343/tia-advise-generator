@@ -1,9 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { DataType } from "../Interfaces";
 
 const StyledAdvice = styled.div`
   width: 54rem;
   height: 36.4rem;
+
+  @media (max-width: 768px) {
+    width: 34.3rem;
+    height: 34.7rem;
+    padding: 2rem;
+  }
 `;
 
 const AdviceTextContainer = styled.div`
@@ -17,6 +24,11 @@ const AdviceTextContainer = styled.div`
   width: 100%;
   padding: 4rem;
   border-radius: 15px;
+
+  @media (max-width: 768px) {
+    padding: 2rem;
+    height: 31.5rem;
+  }
 `;
 
 const AdviseHeader = styled.h1`
@@ -27,6 +39,14 @@ const AdviseHeader = styled.h1`
   text-align: center;
   letter-spacing: 0.409rem;
   margin-bottom: 2rem;
+  margin-top: 0;
+
+  @media (max-width: 768px) {
+    font-size: 1.1rem;
+    line-height: 1.503rem;
+    letter-spacing: 0.346rem;
+    margin-bottom: 1.5rem;
+  }
 `;
 
 const Quote = styled.p`
@@ -36,6 +56,12 @@ const Quote = styled.p`
   line-height: 3.825rem;
   text-align: center;
   margin-bottom: 3rem;
+
+  @media (max-width: 768px) {
+    font-size: 2.4rem;
+    line-height: 3.278rem;
+    margin-bottom: 2rem;
+  }
 `;
 
 const AdviseButton = styled.button`
@@ -50,55 +76,50 @@ const AdviseButton = styled.button`
   border: none;
   left: 50%;
   bottom: 0;
-  top: 88%;
+  top: 90%;
   transform: translateX(-50%);
   cursor: pointer;
 `;
 
-interface DataType {
-  id: number;
-  name: string;
-  // add more fields according to the API response
-}
-
 function Advise() {
-  const [data, setData] = useState<DataType[] | null>(null);
+  const [data, setData] = useState<DataType | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchData = async () => {
+  async function fetchData() {
     setLoading(true);
-    setError(null); // Reset error state
+    setError(null);
 
     try {
-      const response = await fetch("https://api.adviceslip.com/advice"); // replace with your API URL
+      const response = await fetch("https://api.adviceslip.com/advice");
       if (!response.ok) {
         throw new Error(`Error: ${response.status}`);
       }
-      const data = await response.json();
-      console.log(data);
-
-      setData(data);
+      const result = await response.json();
+      setData(result.slip);
     } catch (err) {
-      setError((err as Error).message); // Handle error
+      setError((err as Error).message);
     } finally {
-      setLoading(false); // Always set loading to false after completion
+      setLoading(false);
     }
-  };
+  }
 
-  // if (loading) return <p>Loading...</p>;
-  // if (error) return <p>Error: {error}</p>;
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  if (error) return <p>Error: {error}</p>;
+
   return (
     <StyledAdvice>
       <AdviceTextContainer>
-        <AdviseHeader>ADVICE # 117</AdviseHeader>
-        <Quote>
-          “It is easy to sit up and take notice, what's difficult is getting up
-          and taking action.”
-        </Quote>
+        <AdviseHeader>
+          {loading ? `ADVICE#` : `ADVICE #${data?.id}`}
+        </AdviseHeader>
+        <Quote>{loading ? `loading` : `${data?.advice}`}</Quote>
 
         <svg
-          width="444"
+          width="auto"
           height="16"
           viewBox="0 0 444 16"
           fill="none"
@@ -110,7 +131,7 @@ function Advise() {
           <rect x="226" width="6" height="16" rx="3" fill="#CEE3E9" />
         </svg>
 
-        <AdviseButton onClick={() => fetchData()}>
+        <AdviseButton onClick={fetchData}>
           <svg
             width="64"
             height="64"
@@ -123,8 +144,8 @@ function Advise() {
               fill="#53FFAA"
             />
             <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
+              fillRule="evenodd"
+              clipRule="evenodd"
               d="M24 20H40C42.2081 20.0025 43.9975 21.7919 44 24V40C43.9975 42.2081 42.2081 43.9975 40 44H24C21.7919 43.9975 20.0025 42.2081 20 40V24C20.0025 21.7919 21.7919 20.0025 24 20ZM26 36.5C26 37.3284 26.6716 38 27.5 38C28.3284 38 29 37.3284 29 36.5C29 35.6716 28.3284 35 27.5 35C26.6716 35 26 35.6716 26 36.5ZM27.5 29C26.6716 29 26 28.3284 26 27.5C26 26.6716 26.6716 26 27.5 26C28.3284 26 29 26.6716 29 27.5C29 28.3284 28.3284 29 27.5 29ZM30.5 32C30.5 32.8284 31.1716 33.5 32 33.5C32.8284 33.5 33.5 32.8284 33.5 32C33.5 31.1716 32.8284 30.5 32 30.5C31.1716 30.5 30.5 31.1716 30.5 32ZM36.5 38C35.6716 38 35 37.3284 35 36.5C35 35.6716 35.6716 35 36.5 35C37.3284 35 38 35.6716 38 36.5C38 37.3284 37.3284 38 36.5 38ZM35 27.5C35 28.3284 35.6716 29 36.5 29C37.3284 29 38 28.3284 38 27.5C38 26.6716 37.3284 26 36.5 26C35.6716 26 35 26.6716 35 27.5Z"
               fill="#202733"
             />
