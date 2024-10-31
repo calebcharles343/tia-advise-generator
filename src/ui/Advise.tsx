@@ -76,16 +76,17 @@ const Quote = styled.p`
 `;
 
 const AdviseButton = styled.button`
+  position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: absolute;
-
   background-color: transparent;
   border-radius: 50px;
   margin-bottom: ;
   border: none;
-  top: 90%;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 50%);
 
   cursor: pointer;
   z-index: 999;
