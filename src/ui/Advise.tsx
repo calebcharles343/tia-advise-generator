@@ -128,6 +128,13 @@ function Advise() {
 
   return (
     <StyledAdvice>
+      <h1 style={{ textAlign: "center", marginBottom: 20 }}>
+        Tunga Impact Academy
+      </h1>
+      <h3 style={{ textAlign: "center", marginBottom: 20 }}>
+        Advise Generator by Charles Caleb with ReactJS and Adviceslip API
+      </h3>
+
       <AdviceTextContainer>
         <Text>
           <AdviseHeader>
