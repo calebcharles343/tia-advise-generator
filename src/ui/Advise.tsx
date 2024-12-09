@@ -132,7 +132,7 @@ function Advise() {
         Tunga Impact Academy
       </h1>
       <h3 style={{ textAlign: "center", marginBottom: 20 }}>
-        Advise Generator by Charles Caleb with ReactJS and Adviceslip API
+        Advice Generator by Charles Caleb with ReactJS and Adviceslip API
       </h3>
 
       <AdviceTextContainer>
